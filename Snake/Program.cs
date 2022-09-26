@@ -9,16 +9,25 @@ class Program
 
 
         // screen
-        int width = 10;
-        int height =10;
+        int width = 20;
+        int height = 10;
         string bottom_line = "└";
         
         // snake
         char snake_chr = 's';
         int snake_length = 1;
-        int snake_x = 2;
-        int snake_y = 2;
+        int snake_x = 5;
+        int snake_y = 6;
         int snake_speed = 2;
+        int snake_score = 0;
+
+
+        bool minus_x_v = false; // x vector
+        bool plus_x_v = false;
+        
+        bool minus_y_v = false; // y vector
+        bool plus_y_v = true; // default start 
+
 
         // food 
         char food_chr = 'f';
@@ -41,11 +50,15 @@ class Program
                 Console.Write("{0}", MainLine(2));
                 for (int x = 0; x < width; x++)
                 {
-                    if (y == snake_y-1 && x == snake_x-1)
+                    if (snake_y-1 == y && snake_x-1 == x)
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.Write("X");
                         Console.BackgroundColor = ConsoleColor.Black;
+                    }
+                    else if (snake_y-1 == 1 || snake_y-1 == height || snake_x - 1 == 1 || snake_x - 1 == width)
+                    {
+                        Wasted(snake_score);
                     }
                     else
                     {
@@ -120,6 +133,7 @@ class Program
         return main_line;
     }
 
+
     static string TopLine(int mode, int sc_width)
     {
         string top_line = "";
@@ -178,6 +192,12 @@ class Program
 
         return bottom_line;
 
+    }
+
+    static void Wasted(int score)
+    {
+        Console.WriteLine("You loose with score {0}", score);
+        Environment.Exit(0);
     }
     
 }
