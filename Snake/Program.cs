@@ -56,9 +56,10 @@ class Program
                         Console.Write("X");
                         Console.BackgroundColor = ConsoleColor.Black;
                     }
-                    else if (snake_y-1 == 1 || snake_y-1 == height || snake_x - 1 == 1 || snake_x - 1 == width)
+                    else if (snake_y == 1 || snake_y == height || snake_x == 1 || snake_x == width)
                     {
                         Wasted(snake_score);
+                        break;
                     }
                     else
                     {
@@ -196,8 +197,8 @@ class Program
 
     static void Wasted(int score)
     {
-        Console.WriteLine("You loose with score {0}", score);
-        Environment.Exit(0);
+        Console.WriteLine("\nYou loose with score {0}", score);
+
     }
     
 }
